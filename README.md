@@ -1,16 +1,46 @@
-# React + Vite
+# Mon Restaurant
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+TP React : site vitrine et commande en ligne pour un restaurant de street food. One-page avec bannière, recherche, filtres (catégories, prix, ingrédients), grille de produits, panier en modal, et thème clair/sombre.
 
-Currently, two official plugins are available:
+Maquette de référence : [`design_handoff_mon_restaurant/`](../design_handoff_mon_restaurant) (prototypes HTML, non utilisés en production — l'interface a été recréée en React + Tailwind).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- [React 19](https://react.dev/) + [Vite](https://vite.dev/) (JavaScript, pas de TypeScript)
+- [Tailwind CSS v4](https://tailwindcss.com/) via `@tailwindcss/vite` (pas de `tailwind.config.js` : tokens et animations définis dans `src/index.css`)
+- [lucide-react](https://lucide.dev/) pour les icônes
+- Polices Google Fonts : Anton (titres) et DM Sans (texte)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Démarrage
 
-## Expanding the Oxlint configuration
+```bash
+npm install
+npm run dev       # serveur de développement
+npm run build     # build de production dans dist/
+npm run preview   # prévisualise le build
+npm run lint      # oxlint
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Fonctionnalités
+
+- **Recherche** insensible à la casse et aux accents, sur le nom, la catégorie, les tags et les mots-clés des produits.
+- **Filtres combinés** (catégorie, tag ingrédient, prix maximum) avec réinitialisation, gérés via `FilterContext` (`useContext` + `useMemo`).
+- **Panier** géré via `CartContext` avec `useReducer` (`src/context/cartReducer.js`) : ajout, retrait unitaire, jamais de quantité négative, total dérivé de l'état.
+- **Thème clair/sombre** via `ThemeContext`, mémorisé dans `localStorage`.
+- **Responsive** : sidebar de filtres sur desktop, tiroir (`FilterDrawer`) sur mobile/tablette.
+- **Animations** (entrées en cascade, survols, panier, tiroir, modal…) en CSS/Tailwind, avec respect de `prefers-reduced-motion`.
+
+## Structure
+
+```
+src/
+  components/   Composants d'interface (Header, Nav, Sidebar, ProductCard, CartModal, Footer…)
+  context/      FilterContext, CartContext (+ cartReducer), ThemeContext
+  data/         products.js — catalogue des produits, catégories et tags
+  hooks/        usePrefersReducedMotion
+  index.css     Tokens de couleur, thème Tailwind, keyframes des animations
+public/
+  images/       Photos du site (voir CREDITS.md pour les sources)
+```
+
+
