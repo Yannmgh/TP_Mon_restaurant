@@ -2,7 +2,6 @@
 
 TP React : site vitrine et commande en ligne pour un restaurant de street food. One-page avec bannière, recherche, filtres (catégories, prix, ingrédients), grille de produits, panier en modal, et thème clair/sombre.
 
-Maquette de référence : [`design_handoff_mon_restaurant/`](../design_handoff_mon_restaurant) (prototypes HTML, non utilisés en production — l'interface a été recréée en React + Tailwind).
 
 ## Stack
 
