@@ -17,8 +17,7 @@ Maquette de référence : [`design_handoff_mon_restaurant/`](../design_handoff_m
 npm install
 npm run dev       # serveur de développement
 npm run build     # build de production dans dist/
-npm run preview   # prévisualise le build
-npm run lint      # oxlint
+
 ```
 
 ## Fonctionnalités
@@ -40,7 +39,7 @@ src/
   hooks/        usePrefersReducedMotion
   index.css     Tokens de couleur, thème Tailwind, keyframes des animations
 public/
-  images/       Photos du site (voir CREDITS.md pour les sources)
+  images/       Photos du site 
 ```
 
 
